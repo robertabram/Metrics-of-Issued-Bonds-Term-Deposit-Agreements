@@ -1,0 +1,28 @@
+<--Weighted Average of Contract Duration-->
+AvgDurationBond = CALCULATE(
+    DIVIDE(
+    SUMX(
+        Bond, Bond[DURATION] * Bond[AGR_AMOUNT]),SUM(
+            Bond[AGR_AMOUNT])
+)
+) / 365
+
+
+<--Weighted Average of Interest Rate-->
+IntBond = CALCULATE(
+    DIVIDE(
+    SUMX(
+        Bond,Bond[AGR_PERCENT] * Bond[AGR_AMOUNT]), SUM(
+            Bond[AGR_AMOUNT])
+)
+)
+
+
+<--Digital Share-->
+BondDigShareVolume = DIVIDE(
+        CALCULATE(
+            SUM(
+            Bond[AGR_AMOUNT]),FILTER(
+                Bond,Bond[CREATOR_USER_ID] = 1596)),SUM(
+                    Bond[AGR_AMOUNT])
+    )
